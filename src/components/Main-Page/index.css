@@ -3,8 +3,13 @@
   margin-top: 100px;
 }
 
-#download,
 #result {
+  display: none;
+}
+
+#download,
+#display,
+#report {
   margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
