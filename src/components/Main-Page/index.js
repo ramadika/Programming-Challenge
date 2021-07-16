@@ -8,7 +8,8 @@ export default function App() {
     <div className="App">
       <h2>Programming Challenge</h2>
       <button onClick={random}>Generate</button>
-      <h3 id="result">Result</h3>
+      <button onClick={txtFile} id="download">Download Result</button>
+      <span id="result"></span>
     </div>
   )
 }
@@ -20,10 +21,8 @@ function randomAlphanumerics() {
     var length = Math.floor((Math.random() * 10) + 1);
     for ( var i = 0; i < length; i++ ) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      console.log(result);
-  }
-  // document.getElementById("result").innerHTML = result;
-  return result;
+    }
+    return result;
 }
 
 function randomString() {
@@ -33,9 +32,8 @@ function randomString() {
     var length = Math.floor((Math.random() * 10) + 1);
     for ( var i = 0; i < length; i++ ) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  // document.getElementById("result").innerHTML = result;
-  return result;
+    }
+    return result;
 }
 
 function randomInteger() {
@@ -45,32 +43,17 @@ function randomInteger() {
     var length = Math.floor((Math.random() * 10) + 1);
     for ( var i = 0; i < length; i++ ) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  // document.getElementById("result").innerHTML = result;
-  return result;
+    }
+    return result;
 }
 
 function randomReal() {
-    var result           = '';
+    var result = [];
     var length = Math.floor((Math.random() * 10) + 1);
     for ( var i = 0; i <= length; i++ ) {
-      result += (Math.random() * length) + " , ";
+      result.push(Math.random() * length);
   }
-  // document.getElementById("result").innerHTML = result;
   return result;
-}
-
-function random() {
-    // var result           = '';
-    var arr              = [];
-    var length = Math.floor((Math.random() * 10) + 1);
-    for ( var i = 0; i < length; i++ ) {
-      // result += randomString() + " , " + randomAlphanumerics() + " , " +  randomInteger() + " , " + randomReal();
-      arr.push(randomString(), randomAlphanumerics(), randomInteger(), randomReal());
-  }
-
-  shuffle(arr)
-  document.getElementById("result").innerHTML = arr;
 }
 
 function shuffle(array) {
@@ -89,4 +72,26 @@ function shuffle(array) {
   }
 
   return array;
+}
+
+function random() {
+    var result = [];
+    var length = Math.floor((Math.random() * 100) + 1);
+
+    for ( var i = 0; i < length; i++ ) {
+      result.push(randomString(), randomAlphanumerics(), randomInteger(), randomReal());
+    }
+    
+    shuffle(result)
+    document.getElementById("result").innerHTML = result;
+    document.getElementById("download").style.visibility = 'visible';
+}
+
+function txtFile() {
+  const element = document.createElement("a");
+  const file = new Blob([document.getElementById('result').innerHTML], {type: 'text/plain'});
+  element.href = URL.createObjectURL(file);
+  element.download = "myFile.txt";
+  document.body.appendChild(element); // Required for this to work in FireFox
+  element.click();
 }
