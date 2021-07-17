@@ -1,14 +1,20 @@
+// Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
+import { DataProvider } from 'components/Context'
 
+// Internals
 import './index.css';
 
+// Apps
 import App from 'components/Main-Page';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DataProvider>
+      <App />
+    </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

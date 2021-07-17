@@ -1,22 +1,47 @@
-// Dependencies
-import React from 'react'
+// Dependencies// Dependencies
+import React, { useContext } from 'react';
 // Internals
 import 'components/Main-Page/index.css'
+import { DataContext } from 'components/Context'
 
 export default function App() {
+  const context = useContext(DataContext);
+  let button;
+
+  console.log(context.trigger);
+
+  if (context.trigger === 1) {
+    button = (
+      <>
+        <button onClick={() => context.save()} id="download">Download Result</button>
+        <button  onClick={() => context.display()} id="display">Report</button>
+      </>
+    );
+  }else if (context.trigger === 2) {
+    <>
+      <button onClick={() => context.save()} id="download">Download Result</button>
+      <button  onClick={() => context.display()} id="display">Report</button>
+      <h4>Alphabetical String: </h4>
+      <h4>Real Numbers: </h4>
+      <h4>Integers: </h4>
+      <h4>Alphanumerics: </h4>
+    </>
+  }
+
   return (
     <div className="App">
       <h2>Programming Challenge</h2>
-      <button onClick={random}>Generate</button>
-      <span id="result"></span>
-      <button onClick={file} id="download">Download Result</button>
-      <button onClick={display} id="display">Report</button>
-      <div id="report">
+      <button onClick={() => context.generate()}>Generate</button>
+      <span id="result">{context.result}</span>
+      {button}
+      {/* <button onClick={file} id="download">Download Result</button>
+      <button onClick={display} id="display">Report</button> */}
+      {/* <div id="report">
         <h4>Alphabetical String <span id="string"></span></h4>
         <h4>Real Numbers <span id="real"></span></h4>
         <h4>Integers <span id="integers"></span></h4>
         <h4>Alphanumerics <span id="alphanumerics"></span></h4>
-      </div>
+      </div> */}
     </div>
   )
 }

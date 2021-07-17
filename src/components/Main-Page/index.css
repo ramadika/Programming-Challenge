@@ -15,7 +15,7 @@
   margin-right: auto;
   display: block;
   line-height: 1.5;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 #result {
