@@ -1,23 +1,16 @@
-.App {
+.home {
   text-align: center;
   margin-top: 100px;
 }
 
-#result {
+.home span {
   display: none;
 }
 
-#download,
-#display,
-#report {
+.home button {
   margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
   display: block;
   line-height: 1.5;
-  /* visibility: hidden; */
-}
-
-#result {
-  word-wrap: break-word;
 }

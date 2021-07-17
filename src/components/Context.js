@@ -155,7 +155,7 @@ export class DataProvider extends Component {
             trigger: this.state.trigger,
             alphanumericsReport: this.state.alphanumericsReport,
             stringReport: this.state.stringReport,
-            realReport: this.state.trigger,
+            realReport: this.state.realReport,
             integerReport: this.state.integerReport,
             generate: this.generate,
             save: this.save,
