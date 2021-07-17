@@ -6,7 +6,6 @@ export class DataProvider extends Component {
     
     state = {
         result: [],
-        loopLength: Math.floor((Math.random() * 100) + 1),
         alphanumerics: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
         string: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
         integers: "0123456789",
@@ -116,13 +115,20 @@ export class DataProvider extends Component {
 
     generate = () => {
         var tempResult              = [];
-        for ( var i = 0; i < this.state.loopLength; i++ ){
+        var loopLength              = Math.floor((Math.random() * 10) + 1);
+        for ( var i = 0; i < loopLength; i++ ){
             tempResult.push(
                 this.randomString(),
                 this.randomReal(),
                 this.randomInteger(),
                 this.randomAlphanumerics());
             this.shuffle(tempResult);
+            if (this.check(tempResult) <= 2097152){
+                loopLength += 1;
+            }else {
+                alert("Successfully Generated");
+                break;
+            }
         }
         this.setState({
             result: tempResult,
@@ -130,11 +136,17 @@ export class DataProvider extends Component {
         });
     }
 
+    check = (randomData) => {
+        const file = new Blob(randomData, {type: 'text/plain'});
+        const size = file.size;
+        return size;
+    }
+
     save = () => {
         const element = document.createElement("a");
         const file = new Blob(this.state.result, {type: 'text/plain'});
         element.href = URL.createObjectURL(file);
-        element.download = "myFile.txt";
+        element.download = "Random Objects.txt";
         document.body.appendChild(element); // Required for this to work in FireFox
         element.click();
     }

@@ -9,8 +9,6 @@ export default function App() {
   const context = useContext(DataContext);
   let button;
 
-  console.log(context.trigger);
-
   if (context.trigger === 1) {
     button = (
       <>
