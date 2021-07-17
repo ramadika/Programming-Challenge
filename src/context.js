@@ -9,41 +9,20 @@ export class DataProvider extends Component {
         loopLength: Math.floor((Math.random() * 100) + 1),
         alphanumerics: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
         string: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-        integer: "0123456789",
+        integers: "0123456789",
         trigger: 0,
         alphanumericsReport: 0,
         stringReport: 0,
-        integerReport: 0,
+        integersReport: 0,
         realReport: 0,
     } 
-
-    randomAlphanumerics = () => {
-        var result              = '';
-        var report              = ''; 
-        var charactersLength    = this.state.alphanumerics.length;
-        var loopLength          = Math.floor((Math.random() * charactersLength) + 1);
-        for ( var j = 0; j < Math.floor((Math.random() * charactersLength) + 1); j++ ){
-            for ( var i = 0; i < loopLength; i++ ){
-                result += this.state.alphanumerics.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            result += ",";
-            if ( localStorage.getItem('Alphanumerics') === null ){
-                localStorage.setItem('Alphanumerics', j);
-            }else {
-                report = localStorage.getItem('Alphanumerics');
-                report = parseInt(report) + j;
-                localStorage.setItem('Alphanumerics', report);
-            }
-        }
-        return result;
-    }
 
     randomString = () => {
         var result              = '';
         var report              = ''; 
         var charactersLength    = this.state.string.length;
-        var loopLength          = Math.floor((Math.random() * charactersLength) + 1);
-        for ( var j = 0; j < Math.floor((Math.random() * charactersLength) + 1); j++ ){
+        var loopLength          = Math.floor((Math.random() * charactersLength));
+        for ( var j = 0; j < loopLength; j++ ){
             for ( var i = 0; i < loopLength; i++){
                 result += this.state.string.charAt(Math.floor(Math.random() * charactersLength));
             }
@@ -54,27 +33,6 @@ export class DataProvider extends Component {
                 report = localStorage.getItem('String');
                 report = parseInt(report) + j;
                 localStorage.setItem('String', report);
-            }
-        }
-        return result;
-    }
-
-    randomInteger = () => {
-        var result              = '';
-        var report              = ''; 
-        var charactersLength    = this.state.integer.length;
-        var loopLength          = Math.floor((Math.random() * charactersLength) + 1);
-        for ( var j = 0; j < Math.floor((Math.random() + charactersLength)+ 1); j++){
-            for ( var i = 0; i < loopLength; i++){
-                result += this.state.integer.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            result += ",";
-            if (localStorage.getItem('Integers') === null) {
-                localStorage.setItem('Integers', j);
-            }else {
-                report = localStorage.getItem('Integers');
-                report = parseInt(report) + j;
-                localStorage.setItem('Integers', report);
             }
         }
         return result;
@@ -92,6 +50,48 @@ export class DataProvider extends Component {
                 report = localStorage.getItem('Real');
                 report = parseInt(report) + i;
                 localStorage.setItem('Real', report);
+            }
+        }
+        return result;
+    }
+
+    randomInteger = () => {
+        var result              = '';
+        var report              = ''; 
+        var charactersLength    = this.state.integers.length;
+        var loopLength          = Math.floor((Math.random() * charactersLength));
+        for ( var j = 0; j < loopLength; j++){
+            for ( var i = 0; i < loopLength; i++){
+                result += this.state.integers.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            result += ",";
+            if (localStorage.getItem('Integers') === null) {
+                localStorage.setItem('Integers', j);
+            }else {
+                report = localStorage.getItem('Integers');
+                report = parseInt(report) + j;
+                localStorage.setItem('Integers', report);
+            }
+        }
+        return result;
+    }
+
+    randomAlphanumerics = () => {
+        var result              = '';
+        var report              = ''; 
+        var charactersLength    = this.state.alphanumerics.length;
+        var loopLength          = Math.floor((Math.random() * charactersLength));
+        for ( var j = 0; j < loopLength; j++ ){
+            for ( var i = 0; i < loopLength; i++ ){
+                result += this.state.alphanumerics.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            result += ",";
+            if ( localStorage.getItem('Alphanumerics') === null ){
+                localStorage.setItem('Alphanumerics', j);
+            }else {
+                report = localStorage.getItem('Alphanumerics');
+                report = parseInt(report) + j;
+                localStorage.setItem('Alphanumerics', report);
             }
         }
         return result;
@@ -118,10 +118,10 @@ export class DataProvider extends Component {
         var tempResult              = [];
         for ( var i = 0; i < this.state.loopLength; i++ ){
             tempResult.push(
-                this.randomAlphanumerics(),
-                this.randomInteger(),
+                this.randomString(),
                 this.randomReal(),
-                this.randomString()) ;
+                this.randomInteger(),
+                this.randomAlphanumerics());
             this.shuffle(tempResult);
         }
         this.setState({
@@ -141,22 +141,26 @@ export class DataProvider extends Component {
 
     display = () => {
         this.setState({
-            alphanumericsReport: localStorage.getItem('Alphanumerics'),
             stringReport: localStorage.getItem('String'),
             realReport: localStorage.getItem('Real'),
-            integerReport: localStorage.getItem('Integers'),
+            integersReport: localStorage.getItem('Integers'),
+            alphanumericsReport: localStorage.getItem('Alphanumerics'),
             trigger: 2,
         });
+        localStorage.removeItem('Alphanumerics');
+        localStorage.removeItem('String');
+        localStorage.removeItem('Real');
+        localStorage.removeItem('Integers');
     }
 
     render() {
         const contextValue = {
             result: this.state.result,
             trigger: this.state.trigger,
-            alphanumericsReport: this.state.alphanumericsReport,
             stringReport: this.state.stringReport,
             realReport: this.state.realReport,
-            integerReport: this.state.integerReport,
+            integersReport: this.state.integersReport,
+            alphanumericsReport: this.state.alphanumericsReport,
             generate: this.generate,
             save: this.save,
             display: this.display,

@@ -2,13 +2,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import { DataProvider } from 'components/Context'
+import { DataProvider } from 'context'
 
 // Internals
 import './index.css';
 
 // Apps
-import App from 'components/Main-Page';
+import App from 'scene/Main-Page';
 
 ReactDOM.render(
   <React.StrictMode>

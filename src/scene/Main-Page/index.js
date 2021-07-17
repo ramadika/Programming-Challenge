@@ -1,9 +1,9 @@
 // Dependencies
 import React, { useContext } from 'react';
-import { DataContext } from 'components/Context'
+import { DataContext } from 'context'
 // Internals
-import 'components/Main-Page/index.css'
-import Report from 'components/Report'
+import 'scene/Main-Page/index.css'
+import Report from 'component/Report'
 
 export default function App() {
   const context = useContext(DataContext);
@@ -22,12 +22,12 @@ export default function App() {
     button = (
       <>
         <button onClick={() => context.save()} >Download Result</button>
-        <button  onClick={() => context.display()} >Report</button>
+        <button>Report</button>
         <Report 
-          alphanumerics={context.alphanumericsReport}
           string={context.stringReport}
           real={context.realReport}
-          integers={context.integerReport} />
+          integers={context.integersReport}
+          alphanumerics={context.alphanumericsReport} />
       </>
     )
   }

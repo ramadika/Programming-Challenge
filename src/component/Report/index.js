@@ -1,7 +1,7 @@
 // Dependencies
 import React from 'react'
 // Internals
-import 'components/Report/index.css'
+import 'component/Report/index.css'
 
 export default function index(props) {
     return (
