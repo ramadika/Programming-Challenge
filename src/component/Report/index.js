@@ -4,6 +4,8 @@ import React from 'react'
 import 'component/Report/index.css'
 
 export default function index(props) {
+    
+    // Get value from props
     return (
         <div className="report">
             <h4>Alphabetical String: {props.string} </h4>

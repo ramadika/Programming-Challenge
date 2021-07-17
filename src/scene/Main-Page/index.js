@@ -7,25 +7,32 @@ import Report from 'component/Report'
 
 export default function App() {
   const context = useContext(DataContext);
-  let button;
 
-  if (context.trigger === 1) {
-    button = (
+  // Get trigger value
+  let components;
+  if ( context.trigger === 1 ) {
+
+    // Assign components value
+    components = (
       <>
-        <button onClick={() => context.save()} >Download Result</button>
-        <button  onClick={() => context.display()} >Report</button>
+        <button onClick={ () => context.save() } >Download Result</button>
+        <button onClick={ () => context.display() } >Report</button>
       </>
     );
-  }else if (context.trigger === 2) {
-    button = (
+  }else if ( context.trigger === 2 ) {
+
+    // Assign components value
+    components = (
       <>
-        <button onClick={() => context.save()} >Download Result</button>
+        <button onClick={ () => context.save() } >Download Result</button>
         <button>Report</button>
+
+        {/* Assign props value to components */}
         <Report 
-          string={context.stringReport}
-          real={context.realReport}
-          integers={context.integersReport}
-          alphanumerics={context.alphanumericsReport} />
+          string={ context.stringReport }
+          real={ context.realReport }
+          integers={ context.integersReport }
+          alphanumerics={ context.alphanumericsReport } />
       </>
     )
   }
@@ -33,9 +40,9 @@ export default function App() {
   return (
     <div className="home">
       <h2>Programming Challenge</h2>
-      <button onClick={() => context.generate()}>Generate</button>
-      <span>{context.result}</span>
-      {button}
+      <button onClick={ () => context.generate() }>Generate</button>
+      <span>{ context.result }</span>
+      { components }
     </div>
   )
 }
