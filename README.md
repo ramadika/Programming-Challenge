@@ -10,11 +10,8 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
-- [Release web](#release-web)
 - [Requirements](#requirements)
 - [Usage for Development](#usage-for-development)
-- [Screenshots](#screenshots)
-- [Attributed](#attributed)
 
 ## Introduction
 <b>Random Objects - Web App</b> is an web-based application to generate random objects. There are four (4) types of printable random objects and store them in a single file.
