@@ -25,16 +25,13 @@
 * Button to display total number of each random objects
 * Information about total number of each random objects
 
-## Release-Web
-**Random Objects - Web App** can be accessed [here](https://ramadika.github.io/Pokemon-App/)
-
 ## Requirements
 * [`npm`](https://www.npmjs.com/get-npm)
 * [`reactjs`](https://reactjs.org/docs/getting-started.html)
 
 ## Usage for development
 1. Open your terminal or command prompt
-2. Type `git clone https://github.com/ramadika/Pokemon-App.git`
+2. Type `git clone https://github.com/ramadika/Programming-Challenge.git`
 3. Open the folder and type `npm install` for install dependencies
 4. Type `npm start` for run this app.
 
