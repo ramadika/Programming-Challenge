@@ -10,6 +10,7 @@ export class DataProvider extends Component {
         string: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
         integers: "0123456789",
         trigger: 0,
+        loading: true,
         stringReport: 0,
         realReport: 0,
         integersReport: 0,
@@ -146,10 +147,11 @@ export class DataProvider extends Component {
 
     // Function to shuffle order of random objects
     shuffle = (array) => {
-      var currentIndex = array.length,  randomIndex;
+      var currentIndex = array.length;
+      var randomIndex;
     
       // While there remain elements to shuffle
-      while (0 !== currentIndex) {
+      while (currentIndex !== 0) {
     
         // Pick a remaining element
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -183,7 +185,8 @@ export class DataProvider extends Component {
         alert("Successfully Generated");
         this.setState({
             result: tempResult,
-            trigger: 1
+            trigger: 1,
+            loading: false
         });
     }
 
@@ -225,6 +228,7 @@ export class DataProvider extends Component {
         const contextValue = {
             result: this.state.result,
             trigger: this.state.trigger,
+            loading: this.state.loading,
             stringReport: this.state.stringReport,
             realReport: this.state.realReport,
             integersReport: this.state.integersReport,

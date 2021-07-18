@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import { DataProvider } from 'context'
 
 // Internals
@@ -9,13 +10,17 @@ import './index.css';
 
 // Apps
 import App from 'scene/Main-Page';
+import Generate from 'scene/Generate-Page'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <DataProvider>
-      <App />
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/generate" component={Generate} />
+      </Switch>
     </DataProvider>
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 
