@@ -15,9 +15,9 @@ export class DataProvider extends Component {
         integersReport: 0,
         alphanumericsReport: 0,
     } 
-
-    randomString = () => {
-        // Initialize
+    
+    // Function to generate random string objects
+    randomString = () => { 
         var result              = '';
         var report              = ''; 
 
@@ -50,8 +50,8 @@ export class DataProvider extends Component {
         return result;
     }
 
+    // Function to generate random real numbers objects
     randomReal = () => {
-        // Initialize
         var result              = '';
         var report              = ''; 
 
@@ -76,8 +76,8 @@ export class DataProvider extends Component {
         return result;
     }
 
+    // Function to generate random integers objects
     randomInteger = () => {
-        // Initialize
         var result              = '';
         var report              = ''; 
 
@@ -110,8 +110,8 @@ export class DataProvider extends Component {
         return result;
     }
 
+    // Function to generate random alphanumerics objects
     randomAlphanumerics = () => {
-        // Initialize
         var result              = '';
         var report              = ''; 
 
@@ -144,8 +144,8 @@ export class DataProvider extends Component {
         return result;
     }
 
+    // Function to shuffle order of random objects
     shuffle = (array) => {
-        // Initialize
       var currentIndex = array.length,  randomIndex;
     
       // While there remain elements to shuffle
@@ -162,8 +162,8 @@ export class DataProvider extends Component {
       return array;
     }
 
+    // Function to generate random objects
     generate = () => {
-        // Initialize
         var tempResult              = [];
 
         // Loop for random objects by checking size of output file
@@ -180,44 +180,32 @@ export class DataProvider extends Component {
             this.shuffle(tempResult);
         }
 
-        // Successful Alert 
         alert("Successfully Generated");
-
-        // Assign result and trigger
         this.setState({
             result: tempResult,
             trigger: 1
         });
     }
 
+    // Function to get file size
     check = (tempData) => {
-        // Create file text using temporary result
         const file = new Blob(tempData, {type: 'text/plain'});
-
-        // Get size of file
         const size = file.size;
-
         return size;
     }
 
+    // Function to generate file of random objects
     save = () => {
-        // Create link button element
         const element = document.createElement("a");
-
-        // Create file text using result
         const file = new Blob(this.state.result, {type: 'text/plain'});
-
-        // Config element
         element.href = URL.createObjectURL(file);
         element.download = "Random Objects.txt";
         document.body.appendChild(element); // Required for this to work in FireFox
-
-        // Create element event
         element.click();
     }
 
+    // Function to display total numbers of each random objects
     display = () => {
-        // Assign objects report and trigger
         this.setState({
             stringReport: localStorage.getItem('String'),
             realReport: localStorage.getItem('Real'),

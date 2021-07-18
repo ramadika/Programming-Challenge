@@ -11,8 +11,6 @@ export default function App() {
   // Get trigger value
   let components;
   if ( context.trigger === 1 ) {
-
-    // Assign components value
     components = (
       <>
         <button onClick={ () => context.save() } >Download Result</button>
@@ -20,14 +18,10 @@ export default function App() {
       </>
     );
   }else if ( context.trigger === 2 ) {
-
-    // Assign components value
     components = (
       <>
         <button onClick={ () => context.save() } >Download Result</button>
         <button>Report</button>
-
-        {/* Assign props value to components */}
         <Report 
           string={ context.stringReport }
           real={ context.realReport }
