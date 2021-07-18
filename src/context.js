@@ -16,6 +16,14 @@ export class DataProvider extends Component {
         integersReport: 0,
         alphanumericsReport: 0,
     } 
+
+    // Function to restore trigger and loading
+    restore = () => {
+        this.setState({
+            trigger: 0,
+            loading: true
+        });
+    }
     
     // Function to generate random string objects
     randomString = () => { 
@@ -233,6 +241,7 @@ export class DataProvider extends Component {
             realReport: this.state.realReport,
             integersReport: this.state.integersReport,
             alphanumericsReport: this.state.alphanumericsReport,
+            restore: this.restore,
             generate: this.generate,
             save: this.save,
             display: this.display,

@@ -3,15 +3,19 @@ import React, { useEffect, useContext } from 'react';
 import { DataContext } from 'context'
 import { NavLink } from 'react-router-dom'
 // Internals
-import 'scene/Generate-Page/index.css'
-import Report from 'component/Report'
+import 'scenes/Generate-Page/index.css'
+import Report from 'components/Report'
+import Triggers from 'components/Triggers'
 
 export default function Index() {
     const context = useContext(DataContext);
     
+    // Call generate function after 1 seconds
     useEffect(() => {
       if ( context.trigger === 0 ) {
-        context.generate();
+        setTimeout(() => {
+          context.generate()
+        }, 1000);
       }
     })
   
@@ -21,16 +25,14 @@ export default function Index() {
       components = (
         <>
           <NavLink to="/">Home</NavLink>
-          <button onClick={ () => context.save() } >Download Result</button>
-          <button onClick={ () => context.display() } >Report</button>
+          <Triggers trigger={1} />
         </>
       );
     }else if ( context.trigger === 2 ) {
       components = (
         <>
           <NavLink to="/">Home</NavLink>
-          <button onClick={ () => context.save() } >Download Result</button>
-          <button>Report</button>
+          <Triggers trigger={2} />
           <Report 
             string={ context.stringReport }
             real={ context.realReport }

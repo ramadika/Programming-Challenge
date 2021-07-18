@@ -2,21 +2,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import {HashRouter as Router, Route, Switch} from 'react-router-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { DataProvider } from 'context'
 
 // Internals
 import './index.css';
 
 // Apps
-import App from 'scene/Main-Page';
-import Generate from 'scene/Generate-Page'
+import Home from 'scenes/Main-Page';
+import Generate from 'scenes/Generate-Page'
 
 ReactDOM.render(
   <Router>
     <DataProvider>
       <Switch>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={Home} />
         <Route path="/generate" component={Generate} />
       </Switch>
     </DataProvider>
