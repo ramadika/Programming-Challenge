@@ -62,7 +62,7 @@ export class DataProvider extends Component {
         for ( var i = 0; i <= loopLength; i++ ){
 
             // Get character
-            result += (Math.random() * loopLength) + ", ";
+            result += (Math.random() * loopLength) + ",";
 
             // Store the total number of real numbers object
             if (localStorage.getItem('Real') === null){
